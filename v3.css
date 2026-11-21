@@ -107,3 +107,28 @@
 .detail-information h1{font-size:clamp(45px,4.1vw,68px);overflow-wrap:normal;word-break:normal}
 @media(max-width:850px){.brand-mark.has-custom-logo{width:130px;min-width:130px;max-width:130px;height:55px}.brand-mark .actual-logo{max-height:55px}}
 @media(max-width:540px){.brand-mark.has-custom-logo{width:115px;min-width:115px;max-width:115px;height:50px}.brand-mark .actual-logo{max-height:50px}.brand-words small{font-size:8px;letter-spacing:.7px}.detail-information h1{font-size:clamp(43px,10.8vw,64px)}}
+
+/* V4 — tri des affiches et publication GitHub */
+.gallery-toolbar{flex-wrap:wrap;gap:12px}
+.sort-box{display:flex;align-items:center;gap:9px;color:#66645f;white-space:nowrap;font-size:9px;font-weight:900;letter-spacing:.9px}
+.sort-box select{border:1px solid #9e9b95;border-radius:0;background:#f2f0eb;color:#222;padding:13px 10px;min-height:44px;font-size:10px;font-weight:800;letter-spacing:.4px;cursor:pointer;max-width:235px}
+.sort-box select:focus-visible{outline:2px solid #ff4138;outline-offset:3px}
+.publisher-box{border:1px solid #555;background:#1c1c1e;padding:23px;margin:21px 0;color:#f8f4ed;display:flex;flex-direction:column;gap:12px}
+.publisher-destination{display:flex;flex-direction:column;gap:4px;margin-bottom:6px}
+.publisher-destination span,.publisher-token-label{font-size:10px;font-weight:900;letter-spacing:1px;color:#e44b41}
+.publisher-destination strong{font-size:19px;overflow-wrap:anywhere}
+.publisher-destination small{color:#aaa;font-size:11px}
+.publisher-token{background:#101011;border:1px solid #666;color:#f7f5f1;width:100%;padding:15px;font-size:14px;min-height:48px;box-sizing:border-box}
+.publisher-token:focus{outline:2px solid #e63d36;outline-offset:2px}
+.publisher-box a{color:#f3aa9e;text-decoration:underline;text-underline-offset:2px}
+.publisher-box .admin-small{line-height:1.7;color:#b9b8b8}
+.publisher-button{min-height:55px;font-size:13px;white-space:normal}
+.publisher-button:disabled{opacity:.62;cursor:wait}
+.publish-status{padding:12px;border-left:3px solid #a39c8b;background:#292929;color:#f0ede8;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.publish-status.success{border-color:#75bd84;background:#173025}
+.publish-status.error{border-color:#ff5c58;background:#3b2323}
+.publisher-site-link{font-weight:900;font-size:10px;letter-spacing:.9px;align-self:start}
+.publisher-backup{border-top:1px solid #555;padding-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.publisher-backup p{flex:1 1 100%}
+@media(max-width:850px){.gallery-toolbar{align-items:stretch}.sort-box{flex:1 1 100%;justify-content:flex-start}.sort-box select{width:100%;max-width:none}.publisher-box{padding:15px}}
+@media(max-width:540px){.gallery-toolbar{gap:14px}.sort-box{flex-wrap:wrap}.publisher-backup{flex-direction:column;align-items:stretch}.publisher-backup button{width:100%}}

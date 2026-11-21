@@ -10,10 +10,10 @@
   <title>YS97's Project — Posters & Design</title>
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="v3.css" />
+  <link rel="stylesheet" href="v3.css?v=4" />
   <script src="affiches.js" defer></script>
   <script src="shared.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#galerie">Aller à la galerie</a>
@@ -85,6 +85,7 @@
               <button type="button" class="filter-btn" data-filter="Formule 1" aria-pressed="false">F1 <span id="f1FilterCount">10</span></button>
               <button type="button" class="filter-btn" data-filter="Football" aria-pressed="false">FOOTBALL <span id="footFilterCount">01</span></button>
             </div>
+            <label class="sort-box" for="sortSelect"><span>TRIER PAR</span><select id="sortSelect" aria-label="Trier les affiches"><option value="original">ORDRE ORIGINAL</option><option value="az">ALPHABÉTIQUE A → Z</option><option value="za">ALPHABÉTIQUE Z → A</option></select></label>
             <label class="search-box"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.3 4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="sr-only">Rechercher une affiche</span><input id="searchInput" type="search" placeholder="RECHERCHER UNE AFFICHE..." autocomplete="off" /></label>
           </div>
           <div class="gallery-results" aria-live="polite"><span id="resultsText">11 SÉRIES / 16 AFFICHES</span><span>SURVOLE POUR DÉCOUVRIR LES VERSIONS ↗</span></div>
@@ -98,7 +99,7 @@
     <footer class="footer"><div class="footer-top"><a href="#accueil" class="footer-brand"><img src="logo-ys97-header.png" id="footerLogo" alt="YS97" /></a><a href="#accueil" class="back-top">RETOUR EN HAUT ↑</a></div><div class="footer-bottom"><small>© <span id="year">2026</span> YS97'S PROJECT — FAN-MADE PORTFOLIO <button type="button" id="ys97Access" class="ys97-access" title="Espace YS97" aria-label="Espace YS97">YS97</button></small><small>CRÉÉ AVEC PASSION ✳ NON AFFILIÉ AUX MARQUES OU AUX ÉQUIPES REPRÉSENTÉES.</small></div></footer>
   </div>
 
-  <!-- Ce mode d'édition fonctionne uniquement dans le navigateur local. -->
+  <!-- Les brouillons sont locaux. La publication publique nécessite une authentification GitHub à portée limitée. -->
   <div id="adminDialog" class="admin-dialog" role="dialog" aria-modal="true" aria-labelledby="adminTitle" aria-hidden="true" hidden>
     <div class="admin-backdrop" id="adminBackdrop"></div>
     <div class="admin-panel" role="document">
@@ -116,7 +117,7 @@
         <small>Ce code sert à ouvrir l'éditeur sur cet appareil. Il ne protège pas un compte en ligne.</small>
       </div>
       <div id="adminWorkspace" class="admin-workspace" hidden>
-<div class="admin-notice"><strong>ESPACE CRÉATEUR</strong> Tes modifications sont sauvegardées sur cet appareil. Pour les rendre publiques, télécharge le nouveau <code>affiches.js</code> puis remplace ce fichier sur ton hébergement. Le code est redemandé à chaque ouverture.</div>
+<div class="admin-notice"><strong>ESPACE CRÉATEUR</strong> Modifie tes affiches ici, puis clique sur <strong>« PUBLIER POUR TOUT LE MONDE »</strong> en bas de l'éditeur. Tes modifications sont enregistrées d'abord comme brouillon sur cet appareil. Le code est redemandé à chaque ouverture.</div>
         <div class="admin-stats" id="adminStats"></div>
         <section class="admin-section" aria-labelledby="uploadHeading">
           <h3 id="uploadHeading">+ AJOUTER UNE AFFICHE OU UNE ÉDITION</h3>
@@ -149,7 +150,20 @@
           <p id="logoStatus" class="admin-small" role="status"></p>
         </section>
         <section class="admin-section" aria-labelledby="manageHeading"><h3 id="manageHeading">GÉRER TES CRÉATIONS</h3><p class="admin-small">Renomme une création, change les noms de ses éditions, remplace leurs images, organise les versions ou retire celles dont tu ne veux plus.</p><div id="adminItems" class="admin-items"></div></section>
-        <section class="admin-section export-section" aria-labelledby="exportHeading"><h3 id="exportHeading">PUBLIER TES CHANGEMENTS</h3><p>Quand tout te convient, télécharge le fichier actualisé et remplace <code>affiches.js</code> dans ton dossier (ou ton hébergement). Le fichier exporté contient aussi les nouvelles affiches et les choix de mise en avant.</p><button type="button" class="admin-primary" id="exportConfig">↓ EXPORTER AFFICHES.JS</button><button type="button" class="admin-minor" id="resetLocal">Annuler toutes les modifications locales</button><p class="admin-small">Le site public ne se modifie pas automatiquement : il faut mettre le fichier exporté en ligne. Conserve aussi une sauvegarde. Le code seul n’est pas une sécurité suffisante pour un vrai compte administrateur sur Internet.</p></section>
+        <section class="admin-section export-section" aria-labelledby="exportHeading">
+          <h3 id="exportHeading">🌐 PUBLIER TES CHANGEMENTS POUR TOUT LE MONDE</h3>
+          <p>Après avoir ajouté ou modifié tes affiches, utilise ce bouton pour envoyer les modifications et les nouvelles images directement sur ton site GitHub Pages. <strong>Tu n'auras plus besoin de remplacer <code>affiches.js</code> manuellement.</strong></p>
+          <div class="publisher-box">
+            <div class="publisher-destination"><span>DESTINATION</span><strong>baracapy087-tech / ys97-project</strong><small>Branche : main · GitHub Pages</small></div>
+            <label class="publisher-token-label" for="githubToken">CLÉ DE PUBLICATION GITHUB (FINE-GRAINED TOKEN)</label>
+            <input id="githubToken" class="publisher-token" type="password" autocomplete="off" spellcheck="false" placeholder="Colle ton token ici (jamais dans le chat)" />
+            <p class="admin-small">À configurer une seule fois sur GitHub : <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">créer un token limité</a> au dépôt <strong>ys97-project</strong>, permission <strong>Contents → Read and write</strong>. Il faudra le recoller à chaque nouvelle session d'édition ; il n'est ni conservé ni publié dans les fichiers du site. <strong>Ne le partage avec personne.</strong></p>
+            <button type="button" class="admin-primary publisher-button" id="publishOnline">↗ PUBLIER POUR TOUT LE MONDE</button>
+            <p id="publishStatus" class="publish-status" role="status" aria-live="polite">Tes changements sont pour l'instant dans ton brouillon.</p>
+            <a class="publisher-site-link" href="https://baracapy087-tech.github.io/ys97-project/" target="_blank" rel="noopener noreferrer">OUVRIR MON SITE PUBLIC ↗</a>
+          </div>
+          <div class="publisher-backup"><p class="admin-small">Sauvegarde facultative : tu peux aussi exporter ton catalogue, ou annuler tes modifications locales.</p><button type="button" class="admin-minor" id="exportConfig">↓ EXPORTER AFFICHES.JS</button><button type="button" class="admin-minor" id="resetLocal">Annuler toutes les modifications locales</button></div>
+        </section>
       </div>
     </div>
   </div>

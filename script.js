@@ -4,6 +4,7 @@ const A=window.YS97_APP;
 const $=(id)=>document.getElementById(id);
 let state=structuredClone(A.initial);
 let activeFilter='Toutes';
+let activeSort='original';
 let adminUnlocked=false;
 let noticeTimer=null;
 const CATEGORIES=['Formule 1','Football'];
@@ -98,7 +99,11 @@ function render(){
     const hay=[g.title,g.category,...g.variants.flatMap(v=>[v.title,v.edition,v.search||''])].join(' ').toLocaleLowerCase('fr');
     return (activeFilter==='Toutes'||g.category===activeFilter)&&hay.includes(q);
   });
-  const frag=document.createDocumentFragment();visible.forEach(g=>frag.append(card(g,gs.indexOf(g))));
+  if(activeSort==='az'||activeSort==='za') {
+    const collator=new Intl.Collator('fr',{sensitivity:'base',ignorePunctuation:true,numeric:true});
+    visible.sort((a,b)=>activeSort==='az'?collator.compare(a.title,b.title):collator.compare(b.title,a.title));
+  }
+  const frag=document.createDocumentFragment();visible.forEach((g,i)=>frag.append(card(g,i)));
   gallery.replaceChildren(frag);
   const count=visible.reduce((n,g)=>n+g.variants.length,0);
   text('resultsText',`${visible.length} SÉRIE${visible.length!==1?'S':''} / ${count} AFFICHE${count!==1?'S':''}`);
@@ -107,6 +112,7 @@ function render(){
 }
 filterButtons.forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;render();}));
 inputSearch.addEventListener('input',render);
+$('sortSelect').addEventListener('change',()=>{activeSort=$('sortSelect').value;render();});
 $('resetFilters').addEventListener('click',()=>{activeFilter='Toutes';inputSearch.value='';render();inputSearch.focus();});
 document.querySelectorAll('[data-collection]').forEach(b=>b.addEventListener('click',()=>{
   activeFilter=b.dataset.collection;inputSearch.value='';render();
@@ -122,7 +128,7 @@ function openAdmin(){
 }
 function closeAdmin(){
   adminUnlocked=false; // Jamais de session conservée.
-  $('adminCode').value='';$('adminLogin').hidden=false;$('adminWorkspace').hidden=true;
+  $('adminCode').value='';$('githubToken').value='';$('adminLogin').hidden=false;$('adminWorkspace').hidden=true;
   adminDialog.hidden=true;adminDialog.setAttribute('aria-hidden','true');
   document.body.classList.remove('modal-open');$('ys97Access').focus();
 }
@@ -253,7 +259,7 @@ $('uploadForm').addEventListener('submit',async e=>{
     const id=`ys97-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
     state.posters.push({id,group:g?g.id:id,file,title:g?g.title:t,category:g?g.category:$('newCategory').value,edition:$('newEdition').value.trim()||'Édition originale',search:t});
     const saved=await persist('NOUVELLE ÉDITION AJOUTÉE');
-    $('uploadForm').reset();text('uploadStatus',saved?'Affiche sauvegardée dans ton navigateur. Pense à exporter pour publier.':'Ajoutée mais sauvegarde locale indisponible.');
+    $('uploadForm').reset();text('uploadStatus',saved?'Affiche ajoutée au brouillon. Clique sur PUBLIER POUR TOUT LE MONDE à la fin.':'Ajoutée mais sauvegarde locale indisponible.');
   }catch(err){console.error(err);text('uploadStatus','Erreur de lecture du fichier.');}
 });
 $('logoInput').addEventListener('change',async e=>{
@@ -266,6 +272,124 @@ $('restoreLogo').addEventListener('click',async()=>{
   if(!adminUnlocked)return;
   state.logo='logo-ys97-header.png';await persist('LOGO YS97 RESTAURÉ');
 });
+// Publication sécurisée sur GitHub Pages : le token n'est lu qu'au clic et jamais stocké.
+// Les images ajoutées dans l'éditeur sont envoyées comme fichiers séparés, pas dans affiches.js.
+const GITHUB_OWNER='baracapy087-tech';
+const GITHUB_REPO='ys97-project';
+const GITHUB_BRANCH='main';
+let publishing=false;
+function setPublishStatus(message,kind=''){
+  const el=$('publishStatus');el.textContent=message;
+  el.classList.remove('error','success');if(kind)el.classList.add(kind);
+}
+function dataImageParts(value){
+  if(typeof value!=='string')return null;
+  const match=/^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=]+)$/i.exec(value);
+  if(!match)return null;
+  return {mime:match[1].toLowerCase(),base64:match[2]};
+}
+function cleanImageFilename(id,mime){
+  const extension=mime==='image/jpeg'?'jpg':mime==='image/png'?'png':'webp';
+  // Limiter strictement les caractères dans les chemins envoyés à GitHub.
+  const slug=String(id).replace(/[^a-zA-Z0-9_-]/g,'-').slice(0,90);
+  return `images/ys97-${slug}-${Date.now().toString(36)}.${extension}`;
+}
+function catalogJS(config){
+  return '// YS97 : catalogue public (mis à jour depuis le mode édition)\n'
+    +'window.YS97_AFFICHES = '+JSON.stringify(config.posters,null,2)+';\n'
+    +'window.YS97_LOGO = '+JSON.stringify(config.logo)+';\n'
+    +'window.YS97_FEATURED = '+JSON.stringify(config.featured,null,2)+';\n';
+}
+async function gitRequest(token,path,method='GET',data){
+  const options={method,headers:{
+    'Accept':'application/vnd.github+json',
+    'Authorization':`Bearer ${token}`,
+    'X-GitHub-Api-Version':'2022-11-28'
+  },cache:'no-store'};
+  if(data!==undefined){options.headers['Content-Type']='application/json';options.body=JSON.stringify(data);}
+  let response;
+  try{response=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}${path}`,options);}
+  catch(error){throw new Error('Connexion à GitHub impossible. Vérifie Internet et que tu es sur le site https://.');}
+  if(!response.ok){
+    let msg='';try{msg=(await response.json()).message||'';}catch(_){/* corps non JSON */}
+    if(response.status===401)throw new Error('Token GitHub invalide ou expiré. Recrée une clé de publication.');
+    if(response.status===403)throw new Error('GitHub refuse la publication. Vérifie que le token autorise ys97-project → Contents: Read and write.');
+    if(response.status===404)throw new Error('Dépôt GitHub introuvable ou non autorisé par le token.');
+    if(response.status===409||response.status===422)throw new Error('Le dépôt a changé pendant la publication. Actualise ton site avant de réessayer.');
+    throw new Error(`GitHub a répondu ${response.status}${msg?' : '+msg:''}`);
+  }
+  return response.status===204?null:response.json();
+}
+async function publishDraftToGitHub(token){
+  const basePath=''; // Dépôt déjà configuré dans GITHUB_OWNER / GITHUB_REPO.
+  setPublishStatus('Connexion à GitHub et vérification du dépôt…');
+  // Vérifier les droits AVANT d'envoyer les nouvelles images.
+  const ref=await gitRequest(token,`/git/ref/heads/${GITHUB_BRANCH}`);
+  const parentSha=ref.object.sha;
+  const commit=await gitRequest(token,`/git/commits/${parentSha}`);
+  const treeSha=commit.tree.sha;
+  const publishState=structuredClone(state);
+  const pending=[];
+  let sequence=0;
+  for(const item of publishState.posters){
+    const data=dataImageParts(item.file);
+    if(!data){
+      if(typeof item.file==='string'&&item.file.startsWith('data:'))throw Error('Format d’image non pris en charge. Utilise JPG, PNG ou WEBP.');
+      continue;
+    }
+    const path=cleanImageFilename(item.id+'-'+(sequence++),data.mime);
+    pending.push({path,base64:data.base64});
+    item.file=path;
+  }
+  const logoParts=dataImageParts(publishState.logo);
+  if(logoParts){
+    const path=cleanImageFilename('logo-personnalise',logoParts.mime);
+    pending.push({path,base64:logoParts.base64});
+    publishState.logo=path;
+  }else if(typeof publishState.logo==='string'&&publishState.logo.startsWith('data:')){
+    throw Error('Format du logo non pris en charge. Utilise JPG, PNG ou WEBP.');
+  }
+  const treeEntries=[];
+  for(let i=0;i<pending.length;i++){
+    const item=pending[i];
+    setPublishStatus(`Envoi des images vers GitHub : ${i+1}/${pending.length}…`);
+    const blob=await gitRequest(token,'/git/blobs','POST',{content:item.base64,encoding:'base64'});
+    treeEntries.push({path:item.path,mode:'100644',type:'blob',sha:blob.sha});
+  }
+  // Écriture UTF-8 dans l'arbre Git : une seule validation pour tous les changements.
+  treeEntries.push({path:'affiches.js',mode:'100644',type:'blob',content:catalogJS(publishState)});
+  setPublishStatus('Création de la mise à jour publique…');
+  const tree=await gitRequest(token,'/git/trees','POST',{base_tree:treeSha,tree:treeEntries});
+  const nextCommit=await gitRequest(token,'/git/commits','POST',{
+    message:`YS97 : publication de ${publishState.posters.length} affiches depuis le mode édition`,
+    tree:tree.sha,parents:[parentSha]
+  });
+  await gitRequest(token,`/git/refs/heads/${GITHUB_BRANCH}`,'PATCH',{sha:nextCommit.sha,force:false});
+  // Éviter qu'un ancien brouillon local masque le nouveau catalogue en ligne.
+  // Il est supprimé seulement lorsque GitHub a confirmé la publication.
+  try{await A.clear();}
+  catch(e){console.warn('Le brouillon local n’a pas pu être effacé après publication',e);}
+  // Afficher encore les aperçus locaux tant que Pages n'a pas fini son déploiement.
+  setPublishStatus('✅ Publication envoyée à GitHub ! Le site public se met à jour en quelques minutes. Vérifie-le dans une fenêtre privée.','success');
+  notify('PUBLICATION ENVOYÉE À GITHUB');
+}
+$('publishOnline').addEventListener('click',async()=>{
+  if(!adminUnlocked||publishing)return;
+  const token=$('githubToken').value.trim();
+  if(!token){setPublishStatus('Crée ton token GitHub et colle-le dans le champ au-dessus.','error');$('githubToken').focus();return;}
+  if(!confirm('Publier maintenant toutes tes modifications et nouvelles images sur YS97’s Project ?'))return;
+  publishing=true;
+  $('publishOnline').disabled=true;
+  $('publishOnline').textContent='PUBLICATION EN COURS…';
+  try{await publishDraftToGitHub(token);}
+  catch(e){console.error('Erreur de publication',e);setPublishStatus(`❌ ${e.message}`,'error');}
+  finally{
+    $('githubToken').value=''; // Aucun stockage permanent du secret.
+    publishing=false;$('publishOnline').disabled=false;
+    $('publishOnline').textContent='↗ PUBLIER POUR TOUT LE MONDE';
+  }
+});
+
 $('exportConfig').addEventListener('click',()=>{
   if(!adminUnlocked)return;
   A.exportData(state);notify('FICHIER AFFICHES.JS EXPORTÉ');
