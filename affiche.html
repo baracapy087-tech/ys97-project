@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111214">
+<meta name="description" content="Découvre les affiches de YS97, leurs éditions et leurs détails.">
+<title>Affiche — YS97's Project</title>
+<link rel="icon" href="favicon.png" type="image/png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="v3.css">
+<script src="affiches.js" defer></script><script src="shared.js" defer></script><script src="detail.js" defer></script>
+</head>
+<body class="detail-body">
+<header class="site-header detail-header"><a class="brand" href="index.html#accueil" aria-label="YS97's Project — accueil"><span class="brand-mark has-custom-logo" id="detailBrandMark"><img src="logo-ys97-header.png" class="actual-logo" alt="Logo YS97"></span><span class="brand-words"><strong>YS97<span class="accent-dot">.</span></strong><small>PROJECT / POSTERS</small></span></a><nav class="desktop-nav" aria-label="Navigation principale"><a href="index.html#galerie">TOUTES LES AFFICHES</a><a href="index.html#collections">COLLECTIONS</a><a href="index.html#apropos">À PROPOS</a></nav><a class="header-link" href="index.html#galerie"><span>GALERIE</span><span aria-hidden="true">↗</span></a></header>
+<main class="detail-main" id="detailMain" hidden>
+<div class="detail-crumb"><a href="index.html#galerie">ARCHIVE</a><span>/</span><span id="crumbCategory">FORMULE 1</span><span>/</span><strong id="crumbTitle">AFFICHE</strong></div>
+<div class="detail-layout">
+<section class="detail-gallery" aria-label="Aperçu de l'affiche"><div class="detail-thumbs" id="detailThumbnails" aria-label="Sélection des éditions"></div><div class="detail-image-area"><span class="detail-art-label">YS97 / ORIGINAL ARTWORK</span><img id="detailImage" src="" alt="Affiche"><button type="button" class="detail-zoom" id="zoomImage">⤢ <span>AGRANDIR</span></button></div></section>
+<section class="detail-information" aria-labelledby="detailTitle"><div class="detail-eyebrow"><span class="detail-indicator"></span><span id="detailCategory">FORMULE 1 / AFFICHE</span></div><h1 id="detailTitle">CRÉATION YS97</h1><div class="detail-rule"></div><p class="detail-identity">YS97'S PROJECT <span>✳</span> ÉDITION VISUELLE</p>
+<div class="detail-edit-box"><div class="detail-edit-top"><h2>CHOISIR UNE ÉDITION</h2><span id="editionCount">01 OPTION</span></div><p>Sélectionne une miniature pour changer de version, comme pour la couleur d'un vêtement.</p><div class="detail-edition-grid" id="detailEditions" role="group" aria-label="Éditions disponibles"></div><p class="detail-selected">ÉDITION SÉLECTIONNÉE <strong id="selectedEdition">ORIGINALE</strong></p></div>
+<div class="detail-note"><span class="detail-note-icon">✳</span><div><strong>UNE CRÉATION. PLUSIEURS AMBIANCES.</strong><p>Chaque édition a son propre style. Découvre les différences en changeant de version.</p></div></div>
+<div class="detail-actions"><button type="button" class="detail-main-action" id="seeLarge">VOIR CETTE AFFICHE EN GRAND ↗</button><button type="button" class="detail-copy" id="copyLink" title="Copier le lien de cette édition" aria-label="Copier le lien de cette édition">↗</button></div><div class="detail-smallprint">PORTFOLIO D'ART / FAN-MADE — AUCUN PRODUIT N'EST EN VENTE.</div></section>
+</div>
+<section class="more-section" aria-labelledby="moreTitle"><div class="more-title"><div><span class="eyebrow">DÉCOUVRIR AUSSI</span><h2 id="moreTitle">D'AUTRES CRÉATIONS<span>.</span></h2></div><a href="index.html#galerie">VOIR TOUTE LA GALERIE ↗</a></div><div class="more-grid" id="moreGrid"></div></section>
+</main>
+<div id="notFound" class="detail-error" hidden><h1>AFFICHE INTROUVABLE.</h1><p>Cette création n'est peut-être plus disponible.</p><a href="index.html#galerie">← REVENIR À LA GALERIE</a></div>
+<footer class="footer detail-footer"><div class="footer-top"><a href="index.html#accueil" class="footer-brand"><img id="detailFooterLogo" src="logo-ys97-header.png" alt="YS97"></a><a href="index.html#accueil" class="back-top">ACCUEIL ↑</a></div><div class="footer-bottom"><small>© <span id="detailYear">2026</span> YS97'S PROJECT — PORTFOLIO</small><small>GRAPHIC DESIGN ✳ FORMULE 1 ✳ FOOTBALL</small></div></footer>
+<div class="detail-viewer" id="detailViewer" role="dialog" aria-modal="true" aria-label="Affiche en grand" hidden><div class="detail-viewer-top"><span>YS97 / ZOOM</span><button type="button" id="closeViewer" aria-label="Fermer l'agrandissement">FERMER ✕</button></div><img src="" id="viewerImage" alt=""></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

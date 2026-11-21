@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="description" content="YS97's Project — galerie d'affiches sportives autour de la Formule 1 et du football. Créations et designs originaux de YS97." />
+  <meta property="og:title" content="YS97's Project — Affiches & créations" />
+  <meta property="og:description" content="Bienvenue dans mon univers : Formule 1, football et design." />
+  <title>YS97's Project — Posters & Design</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="v3.css" />
+  <script src="affiches.js" defer></script>
+  <script src="shared.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#galerie">Aller à la galerie</a>
+  <div class="page-shell">
+    <header class="site-header" id="accueil">
+      <a class="brand" href="#accueil" aria-label="YS97's Project — accueil">
+        <span class="brand-mark has-custom-logo" id="brandMark"><img src="logo-ys97-header.png" alt="Logo YS97" class="actual-logo" /></span>
+        <span class="brand-words"><strong>YS97<span class="accent-dot">.</span></strong><small>PROJECT / POSTERS</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigation principale">
+        <a href="#galerie">LES AFFICHES</a>
+        <a href="#collections">COLLECTIONS</a>
+        <a href="#apropos">À PROPOS</a>
+      </nav>
+      <a class="header-link" href="#galerie"><span>EXPLORER</span><span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-topline"><span class="pulse-dot"></span> WELCOME TO YS97'S PROJECT <span class="hero-index">EST. 2026 / PORTFOLIO</span></div>
+          <h1 id="hero-title"><span>MORE THAN</span><span class="hero-outline">A POSTER<span class="star">✳</span></span></h1>
+          <p>De la passion, des couleurs, des pilotes, des joueurs.<br />Des moments de sport transformés en affiches.</p>
+          <div class="hero-actions">
+            <a class="cta primary" href="#galerie">DÉCOUVRIR MES AFFICHES <span aria-hidden="true">↗</span></a>
+            <a class="cta secondary" href="#apropos">MON UNIVERS <span aria-hidden="true">↘</span></a>
+          </div>
+          <div class="hero-lower"><span>FORMULE 1 <b>✳</b> FOOTBALL <b>✳</b> GRAPHIC DESIGN</span><span>SCROLL TO EXPLORE ↓</span></div>
+        </div>
+        <div class="hero-art" aria-label="Aperçu d'affiches de Formule 1 et football">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <div class="hero-poster hero-poster-back"><img src="images/raphinha-color.jpg" id="featuredBack" alt="Affiche mise en avant" /></div>
+          <div class="hero-poster hero-poster-front"><img src="images/oscar-piastri-orange.jpg" id="featuredFront" alt="Affiche mise en avant" /></div>
+          <span class="sticker sticker-top">100%<br />PASSION</span>
+          <span class="sticker sticker-bottom">YS97 / POSTER COLLECTION</span>
+        </div>
+      </section>
+
+      <div class="marquee" aria-label="Design, sport et créativité"><div class="marquee-track" aria-hidden="true">
+        <span>SPORT IS ART <em>✳</em> DESIGN IS PASSION <em>✳</em> SPORT IS ART <em>✳</em> DESIGN IS PASSION <em>✳</em></span>
+        <span>SPORT IS ART <em>✳</em> DESIGN IS PASSION <em>✳</em> SPORT IS ART <em>✳</em> DESIGN IS PASSION <em>✳</em></span>
+      </div></div>
+
+      <section class="collections-section content-width" id="collections" aria-labelledby="collections-title">
+        <div class="section-heading"><span class="eyebrow">01 / MES UNIVERS</span><h2 id="collections-title">DEUX PASSIONS<span class="red-period">.</span><br />UN STYLE<span class="red-period">.</span></h2><p>Deux terrains de jeu, une seule obsession : créer des visuels qui marquent.</p></div>
+        <div class="collection-cards">
+          <button class="collection-card f1-card" type="button" data-collection="Formule 1" aria-label="Voir toutes les affiches Formule 1">
+            <img src="images/lewis-hamilton.jpg" id="featuredF1" alt="Affiche Formule 1 à la une" loading="lazy" />
+            <span class="collection-gradient"></span>
+            <span class="collection-meta"><span class="collection-num">01 / MOTORSPORT</span><span class="collection-arrow" aria-hidden="true">↗</span></span>
+            <span class="collection-info"><strong>FORMULE <em>1</em></strong><small><span id="f1Count">10</span> SÉRIES DISPONIBLES</small></span>
+          </button>
+          <button class="collection-card foot-card" type="button" data-collection="Football" aria-label="Voir toutes les affiches football">
+            <img src="images/raphinha-original.jpg" id="featuredFootball" alt="Affiche Football à la une" loading="lazy" />
+            <span class="collection-gradient"></span>
+            <span class="collection-meta"><span class="collection-num">02 / THE BEAUTIFUL GAME</span><span class="collection-arrow" aria-hidden="true">↗</span></span>
+            <span class="collection-info"><strong>FOOTBALL</strong><small><span id="footCount">1</span> SÉRIES DISPONIBLES</small></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="gallery-section" id="galerie" aria-labelledby="galerie-title">
+        <div class="content-width gallery-inner">
+          <div class="gallery-title-row"><div><span class="eyebrow">02 / LA GALERIE</span><h2 id="galerie-title">THE POSTER<br /><span>ARCHIVE<span class="red-period">.</span></span></h2></div><div class="gallery-aside"><span class="archive-code">YS97 / COLLECTION</span><span class="archive-count"><strong id="totalCount">11</strong><small>SÉRIES</small></span></div></div>
+          <div class="gallery-toolbar">
+            <div class="filters" role="group" aria-label="Filtrer les affiches">
+              <button type="button" class="filter-btn active" data-filter="Toutes" aria-pressed="true">TOUTES <span id="allFilterCount">11</span></button>
+              <button type="button" class="filter-btn" data-filter="Formule 1" aria-pressed="false">F1 <span id="f1FilterCount">10</span></button>
+              <button type="button" class="filter-btn" data-filter="Football" aria-pressed="false">FOOTBALL <span id="footFilterCount">01</span></button>
+            </div>
+            <label class="search-box"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.3 4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="sr-only">Rechercher une affiche</span><input id="searchInput" type="search" placeholder="RECHERCHER UNE AFFICHE..." autocomplete="off" /></label>
+          </div>
+          <div class="gallery-results" aria-live="polite"><span id="resultsText">11 SÉRIES / 16 AFFICHES</span><span>SURVOLE POUR DÉCOUVRIR LES VERSIONS ↗</span></div>
+          <div class="poster-grid" id="posterGrid"></div>
+          <div class="empty-state" id="emptyState" hidden><div>✳</div><h3>AUCUNE AFFICHE TROUVÉE</h3><p>Essaie une autre recherche ou une autre catégorie.</p><button type="button" id="resetFilters">VOIR TOUTES LES AFFICHES ↗</button></div>
+        </div>
+      </section>
+
+      <section class="about-section content-width" id="apropos" aria-labelledby="about-title"><div class="about-deco"><span>YS97</span><span>✳</span><span>PROJECT</span></div><div class="about-copy"><span class="eyebrow">03 / DERRIÈRE LES AFFICHES</span><h2 id="about-title">MA PASSION.<br /><span>MON STYLE.</span></h2><p>Bienvenue sur YS97's Project, ma galerie personnelle d'affiches sportives. Je crée des visuels inspirés par la Formule 1, le football et les moments qui rendent le sport inoubliable.</p><p>Chaque affiche a sa propre ambiance. Les créations restent telles que je les ai imaginées.</p><a href="#galerie" class="text-link">RETOURNER AUX AFFICHES <span>↗</span></a></div></section>
+    </main>
+    <footer class="footer"><div class="footer-top"><a href="#accueil" class="footer-brand"><img src="logo-ys97-header.png" id="footerLogo" alt="YS97" /></a><a href="#accueil" class="back-top">RETOUR EN HAUT ↑</a></div><div class="footer-bottom"><small>© <span id="year">2026</span> YS97'S PROJECT — FAN-MADE PORTFOLIO <button type="button" id="ys97Access" class="ys97-access" title="Espace YS97" aria-label="Espace YS97">YS97</button></small><small>CRÉÉ AVEC PASSION ✳ NON AFFILIÉ AUX MARQUES OU AUX ÉQUIPES REPRÉSENTÉES.</small></div></footer>
+  </div>
+
+  <!-- Ce mode d'édition fonctionne uniquement dans le navigateur local. -->
+  <div id="adminDialog" class="admin-dialog" role="dialog" aria-modal="true" aria-labelledby="adminTitle" aria-hidden="true" hidden>
+    <div class="admin-backdrop" id="adminBackdrop"></div>
+    <div class="admin-panel" role="document">
+      <header class="admin-header">
+        <div><span class="eyebrow">YS97 / BACKSTAGE</span><h2 id="adminTitle">MODE <span>ÉDITION.</span></h2></div>
+        <button type="button" class="admin-close" id="adminClose" aria-label="Fermer">✕</button>
+      </header>
+      <div id="adminLogin" class="admin-login">
+        <p>Bienvenue dans l'espace YS97.</p>
+        <form id="adminLoginForm">
+          <label for="adminCode">CODE D'ACCÈS</label>
+          <div class="admin-code-row"><input id="adminCode" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="12" autocomplete="off" placeholder="••••••" required /><button type="submit" class="admin-primary">ENTRER ↗</button></div>
+          <p class="admin-error" id="adminError" role="alert"></p>
+        </form>
+        <small>Ce code sert à ouvrir l'éditeur sur cet appareil. Il ne protège pas un compte en ligne.</small>
+      </div>
+      <div id="adminWorkspace" class="admin-workspace" hidden>
+<div class="admin-notice"><strong>ESPACE CRÉATEUR</strong> Tes modifications sont sauvegardées sur cet appareil. Pour les rendre publiques, télécharge le nouveau <code>affiches.js</code> puis remplace ce fichier sur ton hébergement. Le code est redemandé à chaque ouverture.</div>
+        <div class="admin-stats" id="adminStats"></div>
+        <section class="admin-section" aria-labelledby="uploadHeading">
+          <h3 id="uploadHeading">+ AJOUTER UNE AFFICHE OU UNE ÉDITION</h3>
+          <form id="uploadForm" class="admin-form">
+            <div class="admin-fields"><label>TITRE<input id="newTitle" required maxlength="80" placeholder="Ex. Lewis Hamilton" /></label><label>CATÉGORIE<select id="newCategory"><option value="Formule 1">Formule 1</option><option value="Football">Football</option></select></label></div>
+            <div class="admin-fields"><label>NOM DE L’ÉDITION<input id="newEdition" maxlength="90" placeholder="Ex. Noir & blanc, Orange, Collector..." /></label><label>CRÉATION / SÉRIE<select id="newGroup"><option value="">Nouvelle création (séparée)</option></select></label></div>
+            <label>IMAGE (JPG, PNG, WEBP)<input id="newImage" type="file" accept="image/jpeg,image/png,image/webp" required /></label>
+            <button type="submit" class="admin-primary">PUBLIER DANS MON BROUILLON ↗</button><p id="uploadStatus" role="status" class="admin-small"></p>
+          </form>
+        </section>
+        <section class="admin-section" aria-labelledby="featuredHeading">
+          <h3 id="featuredHeading">IMAGES À LA UNE / PAGE D’ACCUEIL</h3>
+          <p class="admin-small">Choisis toi-même les affiches présentées au début du site et sur les deux grandes cartes des univers. Tu peux utiliser n’importe quelle édition de ta galerie.</p>
+          <div class="admin-fields">
+            <label>GRANDE AFFICHE D’ACCUEIL<select id="heroFrontSelect"></select></label>
+            <label>AFFICHE D’ARRIÈRE-PLAN<select id="heroBackSelect"></select></label>
+          </div>
+          <div class="admin-fields">
+            <label>CARTE FORMULE 1<select id="heroF1Select"></select></label>
+            <label>CARTE FOOTBALL<select id="heroFootballSelect"></select></label>
+          </div>
+          <div class="featured-editor-preview" id="featuredPreview" aria-label="Aperçu des images mises en avant"></div>
+          <button type="button" class="admin-primary" id="saveFeatured">ENREGISTRER LES IMAGES À LA UNE ↗</button>
+        </section>
+        <section class="admin-section" aria-labelledby="logoHeading">
+          <h3 id="logoHeading">TON LOGO</h3>
+          <p class="admin-small">Ton logo rouge et noir est déjà installé ! Tu peux le remplacer plus tard si tu le souhaites.</p>
+          <label class="admin-file-label">CHOISIR UN LOGO<input type="file" accept="image/png,image/jpeg,image/webp" id="logoInput" /></label>
+          <button type="button" class="admin-minor" id="restoreLogo">REVENIR AU LOGO YS97</button>
+          <p id="logoStatus" class="admin-small" role="status"></p>
+        </section>
+        <section class="admin-section" aria-labelledby="manageHeading"><h3 id="manageHeading">GÉRER TES CRÉATIONS</h3><p class="admin-small">Renomme une création, change les noms de ses éditions, remplace leurs images, organise les versions ou retire celles dont tu ne veux plus.</p><div id="adminItems" class="admin-items"></div></section>
+        <section class="admin-section export-section" aria-labelledby="exportHeading"><h3 id="exportHeading">PUBLIER TES CHANGEMENTS</h3><p>Quand tout te convient, télécharge le fichier actualisé et remplace <code>affiches.js</code> dans ton dossier (ou ton hébergement). Le fichier exporté contient aussi les nouvelles affiches et les choix de mise en avant.</p><button type="button" class="admin-primary" id="exportConfig">↓ EXPORTER AFFICHES.JS</button><button type="button" class="admin-minor" id="resetLocal">Annuler toutes les modifications locales</button><p class="admin-small">Le site public ne se modifie pas automatiquement : il faut mettre le fichier exporté en ligne. Conserve aussi une sauvegarde. Le code seul n’est pas une sécurité suffisante pour un vrai compte administrateur sur Internet.</p></section>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+YS97 — AJOUTER UNE AFFICHE OU UNE ÉDITION
+========================================
+1. Ouvre index.html.
+2. Clique sur YS97 dans le pied de page et déverrouille le mode édition.
+3. Dans « + AJOUTER UNE AFFICHE OU UNE ÉDITION » :
+   - Pour une NOUVELLE création, laisse « Créer une nouvelle affiche / création ».
+   - Pour une autre version, choisis la création existante dans la liste.
+   - Donne un nom à l'édition (Orange, Noir & Blanc, Vintage, Collector...).
+   - Choisis une image JPG/PNG/WEBP (15 Mo maximum).
+4. Clique sur « PUBLIER DANS MON BROUILLON ».
+5. Va dans « Images à la une » pour choisir quels visuels sont mis en avant.
+6. Teste ta nouvelle création dans la galerie.
+7. Exporte affiches.js et remplace le fichier d'origine avant la publication.
+
+Le mode édition local n'est PAS une connexion sécurisée à un serveur.

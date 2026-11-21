@@ -1,0 +1,54 @@
+YS97'S PROJECT — VERSION 3
+==========================
+
+1. OUVRIR LE SITE
+- Décompresse ce ZIP complètement (clic droit > Extraire tout).
+- Dans le dossier extrait, double-clique sur index.html.
+- Le site fonctionne sans abonnement, sans serveur et sans connexion.
+- Clique sur une affiche pour ouvrir sa fiche distincte : affiche.html.
+
+2. LES ÉDITIONS ET VERSIONS
+- Les affiches d'un même projet sont rassemblées en une seule carte.
+- Sur ordinateur, laisse la souris sur une carte : les éditions défilent automatiquement.
+- Sur la fiche de l'affiche, clique sur les miniatures pour changer de version.
+- Le bouton AGRANDIR présente l'image en grand, sans la recadrer.
+
+3. MODE ÉDITION
+- Descends tout en bas de l'accueil.
+- Clique sur le bouton discret YS97 et entre ton code personnel.
+- Le code est redemandé à chaque ouverture de l'éditeur et après actualisation de la page.
+- Tu peux :
+  * ajouter une nouvelle création ;
+  * ajouter une ÉDITION / version à une création déjà existante ;
+  * changer le nom des éditions et remplacer leurs images ;
+  * changer leur ordre (flèche ↑) ;
+  * supprimer une version ;
+  * choisir les 2 images de mise en avant de l'accueil ;
+  * choisir l'image de couverture F1 et celle du Football ;
+  * remplacer ou restaurer ton logo.
+
+4. IMPORTANT : SAUVEGARDE ET MISE EN LIGNE
+- Les modifications faites dans l'éditeur sont des BROUILLONS locaux : elles restent
+  sur le navigateur de cet appareil, si son stockage n'est pas effacé.
+- Clique sur « EXPORTER AFFICHES.JS » pour créer un fichier de publication.
+- Remplace le fichier affiches.js du site par ce fichier exporté.
+- Si le site est hébergé sur GitHub Pages : remplace aussi affiches.js sur GitHub.
+- Les nouvelles images ajoutées sont intégrées dans le fichier exporté. Il peut donc
+  devenir volumineux si tu ajoutes beaucoup de visuels.
+- Les fichiers index.html, affiche.html, shared.js, script.js, detail.js, style.css,
+  v3.css, favicon.png et les images d'origine ne doivent pas être supprimés.
+
+5. PROTECTION DU MODE ÉDITION
+- Le code YS97 est seulement un verrou d'interface, en JavaScript côté navigateur.
+- Il n'est PAS une authentification sécurisée : un visiteur qui comprend le code du
+  site peut théoriquement le contourner.
+- Ce mode n'autorise PAS de modification directe du site public par les visiteurs.
+- Pour une vraie administration privée en ligne, il faudrait une connexion sécurisée
+  et un stockage sur serveur.
+
+6. PUBLICATION GRATUITE
+- Cette version peut être hébergée gratuitement en tant que site statique.
+- GitHub Pages est une possibilité (sous réserve des conditions d'âge et d'usage).
+- Publie tous les fichiers du dossier, pas seulement index.html.
+
+Crédit : créations originales de YS97, portfolio fan-made.
